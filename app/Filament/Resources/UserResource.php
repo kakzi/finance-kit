@@ -29,21 +29,43 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationLabel = 'Users';
+    protected static ?string $navigationGroup = 'Master Data';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make(
-                    'User Information'
-                )->schema([
-                            TextInput::make('name')
-                                ->required(),
-                            TextInput::make('email')
-                                ->required(),
-                            TextInput::make('password')
-                                ->required(),
-                        ]),
+                Section::make('User Information')
+                    ->description('Fill in the basic information for the user.')
+                    ->icon('heroicon-o-user')
+                    ->columns([
+                        'sm' => 2,
+                        'lg' => 8,
+                        '2xl' => 6,
+                    ])
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Full Name')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpan(2),
+
+                        TextInput::make('email')
+                            ->label('Email Address')
+                            ->email()
+                            ->required()
+                            ->unique(ignoreRecord: true) // unik kecuali record sedang di-edit
+                            ->columnSpan(2),
+
+                        TextInput::make('password')
+                            ->label('Password')
+                            ->password()
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // hanya required saat create
+                            ->minLength(8)
+                            ->columnSpan(2)
+                            ->dehydrateStateUsing(fn ($state) => \Hash::make($state)), // otomatis hash
+                    ]),
             ]);
     }
 
