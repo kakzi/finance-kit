@@ -64,6 +64,8 @@ class CashOutResource extends Resource
                             ->relationship('office', 'name')
                             ->label('Kantor Cabang')
                             ->native(false)
+                            ->searchable()
+                            ->preload()
                             ->required()
                             ->columnSpan([
                                 'sm' => 2,

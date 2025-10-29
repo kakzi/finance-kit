@@ -39,5 +39,10 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URI')
     ],
+    'pintara' => [
+        'api_key' => env('PINTARA_API_KEY'),
+        'device_id' => env('PINTARA_DEVICE_ID'),
+    ],
+
 
 ];

@@ -56,6 +56,7 @@ class AsetBaruResource extends Resource
                             ->label('Cabang')
                             ->relationship('office', 'name')
                             ->native(false)
+                            ->preload()
                             ->searchable()
                             ->required()
                             ->columnSpan([

@@ -59,6 +59,7 @@ class LevelApprovalResource extends Resource
                         Forms\Components\Select::make('level')
                             ->label('Level Approval')
                             ->options([
+                                'L0' => 'Level 0',
                                 'L1' => 'Level 1',
                                 'L2' => 'Level 2',
                                 'L3' => 'Level 3',

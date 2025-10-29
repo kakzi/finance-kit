@@ -78,7 +78,8 @@ class OrderResource extends Resource
                             ->label('Nama Supplier')
                             ->relationship('supplier', 'name')
                             ->native(false)
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->columnSpan([
                                 'sm' => 2,
                                 'xl' => 4,
@@ -89,7 +90,8 @@ class OrderResource extends Resource
                         Forms\Components\Select::make('office_id')
                             ->label('Kirim ke Cabang')
                             ->relationship('office', 'name')
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->columnSpan([
                                 'sm' => 2,

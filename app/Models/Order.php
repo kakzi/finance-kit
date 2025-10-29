@@ -20,6 +20,7 @@ class Order extends Model
         'number_transaction',
         'method_payment',
         'total_perkiraan',
+        'status',
         'catatan',
     ];
 

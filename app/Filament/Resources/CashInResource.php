@@ -60,6 +60,8 @@ class CashInResource extends Resource
                         Forms\Components\Select::make('office_id')
                             ->relationship('office', 'name')
                             ->label('Kantor Cabang')
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->required()
                             ->columnSpan([

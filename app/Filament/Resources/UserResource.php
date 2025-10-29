@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Hash;
 use App\Models\User;
 use Filament\Tables;
 use Filament\Forms\Form;
@@ -55,17 +56,53 @@ class UserResource extends Resource
                             ->label('Email Address')
                             ->email()
                             ->required()
-                            ->unique(ignoreRecord: true) // unik kecuali record sedang di-edit
+                            ->unique(ignoreRecord: true)
                             ->columnSpan(2),
+
+                        TextInput::make('whatsapp')
+                            ->label('WhatsApp Number')
+                            ->tel()
+                            ->maxLength(20)
+                            ->placeholder('e.g. 6281234567890')
+                            ->columnSpan(2),
+
+                        Select::make('role_id')
+                            ->label('Role')
+                            ->relationship('role', 'name')
+                            ->searchable()
+                            ->required()
+                            ->columnSpan(2),
+
+                        Select::make('office_id')
+                            ->label('Office')
+                            ->relationship('office', 'name')
+                            ->searchable()
+                            ->required()
+                            ->columnSpan(2),
+
+                        Select::make('level_approval_id')
+                            ->label('Level Approval')
+                            ->options(function () {
+                                return \App\Models\LevelApproval::all()
+                                    ->mapWithKeys(fn ($item) => [
+                                        $item->id => "{$item->level} - Rp " . number_format($item->limit_amount, 0, ',', '.')
+                                    ]);
+                            })
+                            ->searchable()
+                            ->required()
+                            ->columnSpan(2),
+
 
                         TextInput::make('password')
                             ->label('Password')
                             ->password()
-                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord) // hanya required saat create
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord)
                             ->minLength(8)
-                            ->columnSpan(2)
-                            ->dehydrateStateUsing(fn ($state) => \Hash::make($state)), // otomatis hash
+                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                            ->dehydrated(fn ($state) => filled($state)) // hanya disimpan jika ada isinya
+                            ->columnSpan(2),
                     ]),
+
             ]);
     }
 

@@ -28,4 +28,22 @@ class ApprovalRequest extends Model
     {
         return $this->belongsTo(User::class, 'approval_by');
     }
+
+    protected $casts = [
+        'approval_by' => 'array',
+    ];
+
+    // public function getApprovalByAttribute()
+    // {
+    //     // Decode JSON atau array langsung
+    //     $ids = is_array($this->approval_by) ? $this->approval_by : json_decode($this->approval_by, true);
+
+    //     if (empty($ids)) {
+    //         return [];
+    //     }
+
+    //     // Ambil nama user berdasarkan ID
+    //     return User::whereIn('id', $ids)->pluck('name')->toArray();
+    // }
+
 }

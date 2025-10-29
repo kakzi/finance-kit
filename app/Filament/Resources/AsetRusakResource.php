@@ -49,6 +49,7 @@ class AsetRusakResource extends Resource
                             ->label('Cabang')
                             ->relationship('office', 'name')
                             ->native(false)
+                            ->preload()
                             ->searchable()
                             ->required()
                             ->columnSpan([
@@ -79,6 +80,7 @@ class AsetRusakResource extends Resource
 
                         Forms\Components\Textarea::make('catatan')
                             ->label('Catatan')
+                            ->required()
                             ->rows(4)
                             ->columnSpan([
                                 'sm' => 2,

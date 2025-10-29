@@ -81,7 +81,8 @@ class PenerimaanBarangResource extends Resource
                             ->label('Nama Supplier')
                             ->relationship('supplier', 'name')
                             ->native(false)
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->columnSpan([
                                 'sm' => 2,
                                 'xl' => 4,
@@ -92,7 +93,8 @@ class PenerimaanBarangResource extends Resource
                         Forms\Components\Select::make('office_id')
                             ->label('Kantor Cabang')
                             ->relationship('office', 'name')
-                            // ->searchable()
+                             ->searchable()
+                            ->preload()
                             ->native(false)
                             ->columnSpan([
                                 'sm' => 2,
@@ -146,10 +148,10 @@ class PenerimaanBarangResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('supplier_id')
+                Tables\Columns\TextColumn::make('supplier.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('office_id')
+                Tables\Columns\TextColumn::make('office.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal')
@@ -161,21 +163,13 @@ class PenerimaanBarangResource extends Resource
                 Tables\Columns\TextColumn::make('total_pembelian')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-   Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make(),
 
             ])
             ->bulkActions([

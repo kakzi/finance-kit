@@ -58,6 +58,7 @@ class PengirimanResource extends Resource
                             ->relationship('officeTo', 'name')
                             ->native(false)
                             ->searchable()
+                            ->preload()
                             ->required()
                             ->columnSpan([
                                 'sm' => 2,
@@ -74,6 +75,7 @@ class PengirimanResource extends Resource
                                     ->required(),
                             ])
                             ->native(false)
+                            ->preload()
                             ->searchable()
                             ->required()
                             ->columnSpan([

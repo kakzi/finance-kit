@@ -60,7 +60,8 @@ class FakturPembelianResource extends Resource
                             ->label('Nama Supplier')
                             ->relationship('supplier', 'name')
                             ->native(false)
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->columnSpan([
                                 'sm' => 2,
                                 'xl' => 4,

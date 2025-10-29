@@ -59,16 +59,15 @@ class ReturnPembelianResource extends Resource
                             ->label('Nama Supplier')
                             ->relationship('supplier', 'name')
                             ->native(false)
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->columnSpan([
                                 'sm' => 2,
                                 'xl' => 4,
                                 '2xl' => 4,
                             ])
                             ->required(),
-
-                        
-
+                            
                         Forms\Components\TextInput::make('total_return_pembelian')
                             ->label('Total Return Pembelian')
                             ->numeric()

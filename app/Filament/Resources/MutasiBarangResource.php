@@ -69,7 +69,8 @@ class MutasiBarangResource extends Resource
                         Forms\Components\Select::make('office_from_id')
                             ->label('Dari Cabang Mana')
                             ->relationship('officeFrom', 'name')
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->columnSpan([
                                 'sm' => 2,
@@ -80,7 +81,8 @@ class MutasiBarangResource extends Resource
                         Forms\Components\Select::make('office_to_id')
                             ->label('Ke Cabang Mana')
                             ->relationship('officeTo', 'name')
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->columnSpan([
                                 'sm' => 2,

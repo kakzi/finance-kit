@@ -50,6 +50,7 @@ class PemeliharaanResource extends Resource
                             ->relationship('office', 'name')
                             ->native(false)
                             ->searchable()
+                            ->preload()
                             ->required()
                             ->columnSpan([
                                 'sm' => 2,

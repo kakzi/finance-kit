@@ -42,6 +42,7 @@ class BarangReturnResource extends Resource
                             ->label('Dari Cabang')
                             ->relationship('officeFrom', 'name')
                             ->native(false)
+                            ->preload()
                             ->searchable()
                             ->required()
                             ->columnSpan([
@@ -54,6 +55,7 @@ class BarangReturnResource extends Resource
                             ->label('Ke Cabang')
                             ->relationship('officeTo', 'name')
                             ->native(false)
+                            ->preload()
                             ->searchable()
                             ->required()
                             ->columnSpan([

@@ -70,7 +70,8 @@ class BarangBaruResource extends Resource
                         Forms\Components\Select::make('office_id')
                             ->label('Kirim ke Cabang')
                             ->relationship('office', 'name')
-                            // ->searchable()
+                            ->searchable()
+                            ->preload()
                             ->native(false)
                             ->columnSpan([
                                 'sm' => 2,
